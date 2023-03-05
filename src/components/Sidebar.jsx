@@ -9,9 +9,9 @@ import { links } from '../data/dummy';
 
 const Sidebar = () => {
 
-  const {activeMenu, setActiveMenu, screanSize} = useStateContext();
-  const activeLink = 'flex item-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-white text-md m-2';
-  const normalLink = 'flex item-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-white text-md text-gray-800 dark:text-gray-200 dark:hover:text-black hover:bg-light-gray m-2';
+  const {activeMenu, setActiveMenu, screanSize, currentColor} = useStateContext();
+  const activeLink = 'flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg  text-white  text-md m-2';
+  const normalLink = 'flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-md text-gray-700 dark:text-gray-200 dark:hover:text-black hover:bg-light-gray m-2';
 
   const handleCloseSideBar = () => {
     if (activeMenu && screanSize <= 900) {
@@ -42,6 +42,7 @@ const Sidebar = () => {
               </p>
               {item.links.map((link) => (
                 <NavLink to={`${link.name}`} key={link.name} onClick={handleCloseSideBar}
+                style={({isActive}) =>({ backgroundColor :  isActive ?  currentColor : ''})}
                   className={({ isActive }) => isActive ? activeLink : normalLink}>
                   {link.icon}
                   <span className='capitalize'>{link.name}</span>
